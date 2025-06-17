@@ -1,0 +1,59 @@
+---
+import { getTranslation, getCurrentLang } from '../i18n/utils.js';
+
+const lang = getCurrentLang(Astro.url);
+const t = getTranslation(lang);
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img 
+      src="/a-la-une.jpg" 
+      alt="Luxury jewelry background"
+      class="w-full h-full object-cover scale-110"
+      loading="eager"
+    />
+    <!-- Enhanced overlay with more transparency for better text readability -->
+    <div class="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-black/50"></div>
+  </div>
+
+  <!-- Background Pattern (kept for additional elegance) -->
+  <div class="absolute inset-0 opacity-5 z-10">
+    <div class="absolute top-20 left-20 w-32 h-32 border border-gold rounded-full"></div>
+    <div class="absolute top-40 right-32 w-24 h-24 border border-copper rounded-full"></div>
+    <div class="absolute bottom-32 left-1/4 w-16 h-16 border border-gold rounded-full"></div>
+    <div class="absolute bottom-20 right-20 w-20 h-20 border border-copper rounded-full"></div>
+  </div>
+
+  <div class="container mx-auto px-4 text-center relative z-20">
+    <div class="max-w-4xl mx-auto space-y-8 animate-fade-in">
+      <!-- Main Title without background frame -->
+      <h1 class="text-4xl md:text-6xl lg:text-display font-serif font-bold text-white leading-tight drop-shadow-2xl">
+        {t.hero.title}
+      </h1>
+      
+      <!-- Subtitle -->
+      <p class="text-lg md:text-xl text-white/95 leading-relaxed max-w-3xl mx-auto whitespace-pre-line font-medium drop-shadow-xl">
+        {t.hero.subtitle}
+      </p>
+      
+      <!-- CTA Button - Rectangle Format -->
+      <div class="pt-8">
+        <a 
+          href={lang === 'ar' ? '/gallery' : '/fr/gallery'}
+          class="inline-block bg-gold text-white font-bold text-xl hover:bg-copper transition-all duration-300 px-8 py-4 drop-shadow-xl"
+        >
+          {t.hero.cta}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
+    <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center bg-white/20 backdrop-blur-sm">
+      <div class="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+    </div>
+  </div>
+</section>

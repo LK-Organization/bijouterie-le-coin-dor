@@ -1,0 +1,81 @@
+---
+import { getTranslation, getCurrentLang } from '../i18n/utils.js';
+
+const lang = getCurrentLang(Astro.url);
+const t = getTranslation(lang);
+
+const schedule = [
+  { day: t.contactPreview.days.sunday, hours: '09:00 - 19:00' },
+  { day: t.contactPreview.days.monday, hours: '09:00 - 19:00' },
+  { day: t.contactPreview.days.tuesday, hours: '09:00 - 19:00' },
+  { day: t.contactPreview.days.wednesday, hours: '09:00 - 19:00' },
+  { day: t.contactPreview.days.thursday, hours: '09:00 - 19:00' },
+  { day: t.contactPreview.days.friday, hours: t.contactPreview.days.closed },
+  { day: t.contactPreview.days.saturday, hours: '09:00 - 19:00' }
+];
+---
+
+<section class="py-20 bg-warm-gray">
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Contact Info -->
+        <div class="space-y-8">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-serif font-bold text-dark mb-6">
+              {t.contactPreview.title}
+            </h2>
+            <div class="w-24 h-1 bg-gold mb-6"></div>
+            <p class="text-lg text-text-light leading-relaxed text-justify">
+              {t.contactPreview.description}
+            </p>
+          </div>
+
+          <!-- Address -->
+          <div class="flex items-start space-x-4 rtl:space-x-reverse">
+            <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-dark mb-2">{t.contactPreview.address}</h3>
+              <p class="text-text-light whitespace-pre-line">{t.contactPreview.addressValue}</p>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="pt-4">
+            <a 
+              href={lang === 'ar' ? '/contact' : '/fr/contact'}
+              class="inline-flex items-center px-8 py-4 bg-gold text-white font-semibold rounded-lg hover:bg-copper transition-all duration-300 transform hover:scale-105"
+            >
+              {t.contactPreview.cta}
+              <svg class="w-5 h-5 ml-2 rtl:ml-0 rtl:mr-2 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Schedule -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg">
+          <h3 class="text-2xl font-semibold text-dark mb-6 text-center">
+            {t.contactPreview.hours}
+          </h3>
+          <div class="space-y-4">
+            {schedule.map((item, index) => (
+              <div class="flex justify-between items-center py-2 border-b border-beige-dark last:border-b-0" key={index}>
+                <span class="text-dark font-medium">{item.day}</span>
+                <span class={`${item.hours === t.contactPreview.days.closed ? 'text-red-500' : 'text-text-light'} font-medium`}>
+                  {item.hours}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

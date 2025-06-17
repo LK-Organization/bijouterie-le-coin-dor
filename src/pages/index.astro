@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import Craftsmanship from '../components/Craftsmanship.astro';
+import FeaturedProducts from '../components/FeaturedProducts.astro';
+import ContactPreview from '../components/ContactPreview.astro';
+import { getTranslation, getCurrentLang } from '../i18n/utils.js';
+
+const lang = getCurrentLang(Astro.url);
+const t = getTranslation(lang);
+
+const title = `${t.hero.title} - Le Coin d'Or`;
+const description = "Bijouterie d'exception à Ghardaïa depuis 1987. Créations uniques en or 18 carats, artisanat traditionnel et service personnalisé. Découvrez nos collections exclusives.";
+---
+
+<Layout title={title} description={description} lang={lang}>
+  <Header />
+  <main>
+    <Hero />
+    <Craftsmanship />
+    <iframe src="https://ring-sizer-embed.netlify.app" class="w-full h-[850px] border-none overflow-hidden"
+  scrolling="no" />
+
+    <FeaturedProducts />
+    <ContactPreview />
+  </main>
+  <Footer />
+</Layout>

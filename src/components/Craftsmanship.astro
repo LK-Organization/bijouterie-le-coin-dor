@@ -1,0 +1,60 @@
+---
+import { getTranslation, getCurrentLang } from '../i18n/utils.js';
+
+const lang = getCurrentLang(Astro.url);
+const t = getTranslation(lang);
+---
+
+<section class="py-20 bg-warm-beige">
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto">
+      <!-- Section Title -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-serif font-bold text-dark mb-6">
+          {t.craftsmanship.title}
+        </h2>
+        <div class="w-24 h-1 bg-gold mx-auto"></div>
+      </div>
+
+      <!-- Content with Image -->
+      <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${lang === 'ar' ? 'lg:grid-flow-col-dense' : ''}`}>
+        <!-- Image -->
+        <div class={`${lang === 'ar' ? 'lg:col-start-2' : ''} animate-slide-up`}>
+          <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+            <img 
+              src="/494898968_17951424476953682_76621524452601449_n.jpeg" 
+              alt="Bijoux artisanaux Le Coin d'Or"
+              class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          </div>
+        </div>
+
+        <!-- Text Content -->
+        <div class={`${lang === 'ar' ? 'lg:col-start-1 lg:row-start-1' : ''} space-y-8`}>
+          <div class="animate-slide-up">
+            <p class="text-lg leading-relaxed text-text-light text-justify">
+              {t.craftsmanship.paragraph1}
+            </p>
+          </div>
+
+          <div class="animate-slide-up" style="animation-delay: 0.3s;">
+            <p class="text-lg leading-relaxed text-text-light text-justify">
+              {t.craftsmanship.paragraph2}
+            </p>
+          </div>
+
+          <!-- Decorative Element -->
+          <div class="flex justify-start pt-8">
+            <div class="flex items-center space-x-4 rtl:space-x-reverse">
+              <div class="w-8 h-px bg-gold"></div>
+              <div class="w-3 h-3 bg-gold rounded-full"></div>
+              <div class="w-8 h-px bg-gold"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

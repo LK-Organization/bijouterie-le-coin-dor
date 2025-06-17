@@ -1,0 +1,104 @@
+---
+import { getTranslation, getDirection, getCurrentLang } from '../i18n/utils.js';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: string;
+}
+
+const { title, description, lang = getCurrentLang(Astro.url) } = Astro.props;
+const t = getTranslation(lang);
+const direction = getDirection(lang);
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang={lang} dir={direction}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={Astro.url.href} />
+    
+    <!-- Hreflang -->
+    <link rel="alternate" hreflang="ar" href={`${Astro.site}${currentPath.replace('/fr', '')}`} />
+    <link rel="alternate" hreflang="fr" href={`${Astro.site}/fr${currentPath.replace('/fr', '')}`} />
+    <link rel="alternate" hreflang="x-default" href={`${Astro.site}${currentPath.replace('/fr', '')}`} />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:locale" content={lang === 'ar' ? 'ar_DZ' : 'fr_DZ'} />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Le Coin d'Or",
+        "description": "Bijouterie de luxe à Ghardaïa - Créations d'exception en or 18 carats",
+        "url": "https://lecoin-dor.com",
+        "telephone": "+213-XX-XX-XX-XX",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rue Cheikh Ammi Said",
+          "addressLocality": "Ghardaïa",
+          "addressCountry": "DZ"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "32.4910",
+          "longitude": "3.6795"
+        },
+        "openingHours": [
+          "Su-Th 09:00-19:00",
+          "Sa 09:00-19:00"
+        ],
+        "priceRange": "$$$",
+        "servesCuisine": "Jewelry",
+        "foundingDate": "1987"
+      }
+    </script>
+  </head>
+  <body class="bg-cream text-dark">
+    <slot />
+    
+    <script>
+      // Language switcher functionality
+      function switchLanguage() {
+        const currentLang = document.documentElement.lang;
+        const newLang = currentLang === 'ar' ? 'fr' : 'ar';
+        const currentPath = window.location.pathname;
+        
+        let newPath;
+        if (newLang === 'fr') {
+          newPath = currentPath === '/' ? '/fr' : `/fr${currentPath}`;
+        } else {
+          newPath = currentPath.replace('/fr', '') || '/';
+        }
+        
+        window.location.href = newPath;
+      }
+      
+      // Make function globally available
+      window.switchLanguage = switchLanguage;
+    </script>
+  </body>
+</html>
