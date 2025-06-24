@@ -12,18 +12,42 @@ const lang = 'fr';
 const t = getTranslation(lang);
 
 const title = `${t.hero.title} - Le Coin d'Or`;
-const description = "Bijouterie d'exception à Ghardaïa depuis 1987. Créations uniques en or 18 carats, artisanat traditionnel et service personnalisé. Découvrez nos collections exclusives.";
+const description =
+  "Bijouterie d'exception à Ghardaïa depuis 1987. Créations uniques en or 18 carats, artisanat traditionnel et service personnalisé. Découvrez nos collections exclusives.";
 ---
 
 <Layout title={title} description={description} lang={lang}>
   <Header />
+
   <main>
     <Hero />
     <Craftsmanship />
-    <iframe src="https://ringsizer-bijouterie.netlify.app/fr" class="w-full h-[1000px] md:h-[950px] border-none overflow-hidden"
-  scrolling="yes" /> 
+
+    <!-- 🔽 Iframe qui s’ajuste dynamiquement -->
+    <iframe
+      id="ringSizerIframe"
+      src="https://ringsizer-bijouterie.netlify.app/fr"
+      class="w-full border-none overflow-hidden transition-all duration-300 ease-in-out"
+      scrolling="no"
+    ></iframe>
+
+    <!-- 🔽 Script pour ajuster dynamiquement la hauteur de l’iframe -->
+    <script>
+      window.addEventListener('message', (event) => {
+        const iframe = document.getElementById('ringSizerIframe');
+
+        // Optionnel : vérifier l’origine pour plus de sécurité
+        // if (event.origin !== 'https://ringsizer-bijouterie.netlify.app') return;
+
+        if (iframe && event.data?.height) {
+          iframe.style.height = event.data.height + 'px';
+        }
+      });
+    </script>
+
     <FeaturedProducts />
     <ContactPreview />
   </main>
+
   <Footer />
 </Layout>
