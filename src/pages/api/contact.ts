@@ -25,12 +25,12 @@ export const POST: APIRoute = async ({ request }) => {
 
   // 3) Préparer le transporteur Nodemailer (depuis tes env vars)
   const transporter = nodemailer.createTransport({
-    host: import.meta.env.MAIL_HOST,
-    port: Number(import.meta.env.MAIL_PORT),
-    secure: import.meta.env.MAIL_SECURE === "true",
+    host: "mail77.lwspanel.com",
+    port: 465,
+    secure: true,
     auth: {
-      user: import.meta.env.MAIL_USER,
-      pass: import.meta.env.MAIL_PASS,
+      user: "contact@le-coin-dor.com",
+      pass: "z3yJd5623@Kjhsd",
     },
   });
   // 4) Envoi du mail
