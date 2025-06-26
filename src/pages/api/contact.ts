@@ -50,7 +50,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (err) {
-    console.error("Erreur envoi email :", err);
+    console.error("Erreur d'envoi:", err);
     return new Response(
       JSON.stringify({ error: "Échec de l’envoi de l’email" }),
       { status: 500 }
