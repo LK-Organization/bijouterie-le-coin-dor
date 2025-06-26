@@ -1,9 +1,12 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import netlify from "@astrojs/netlify";
+
 export default defineConfig({
   output: "server",
+
   integrations: [tailwind()],
+
   i18n: {
     defaultLocale: "ar",
     locales: ["ar", "fr"],
@@ -11,8 +14,12 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+
   build: {
     inlineStylesheets: "always",
   },
-  adapter: netlify(),
+
+  adapter: netlify({
+    edge: false,
+  }),
 });
