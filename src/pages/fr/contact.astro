@@ -193,29 +193,60 @@ const schedule = [
   <Footer />
 </Layout>
 
-<script>
-  // Simple form validation and submission
-  document.getElementById('contact-form')?.addEventListener('submit', function(e) {
+<script type="module" is:inline>
+  const form = document.getElementById('contact-form');
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData);
-    
-    // Simple validation
+
+    // Gather form data
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      message: formData.get('message')
+    };
+
+    // Basic client-side validation
     if (!data.name || !data.email || !data.message) {
-      alert('Veuillez remplir tous les champs obligatoires.');
-      return;
+      return alert('Veuillez remplir tous les champs obligatoires.');
     }
-    
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(data.email)) {
-      alert('Veuillez entrer une adresse email valide.');
-      return;
+      return alert('Veuillez entrer une adresse email valide.');
     }
-    
-    // Simulate form submission
-    alert('Message envoyé avec succès! Nous vous répondrons dans les plus brefs délais.');
-    this.reset();
+
+    // Disable submit button to prevent multiple clicks
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Envoi en cours…';
+
+    try {
+     
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+
+      if (res.ok && result.success) {
+        alert('Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.');
+        form.reset();
+      } else {
+        console.error('Erreur côté serveur:', result.error);
+        alert('Oups ! Une erreur est survenue lors de l’envoi. Veuillez réessayer plus tard.');
+      }
+    } catch (err) {
+      console.error('Erreur réseau ou inattendue :', err);
+      alert('Impossible de se connecter au serveur. Vérifiez votre connexion et réessayez.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Envoyer';
+    }
   });
 </script>
