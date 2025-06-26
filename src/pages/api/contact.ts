@@ -1,5 +1,4 @@
 export const prerender = false;
-
 import type { APIRoute } from "astro";
 import nodemailer from "nodemailer";
 
@@ -25,12 +24,12 @@ export const POST: APIRoute = async ({ request }) => {
 
   // 3) Préparer le transporteur Nodemailer (depuis tes env vars)
   const transporter = nodemailer.createTransport({
-    host: import.meta.env.MAIL_HOST,
-    port: Number(import.meta.env.MAIL_PORT),
-    secure: import.meta.env.MAIL_SECURE === "true",
+    host: process.env.MAIL_HOST,
+    port: Number(process.env.MAIL_PORT),
+    secure: process.env.MAIL_SECURE === "true",
     auth: {
-      user: import.meta.env.MAIL_USER,
-      pass: import.meta.env.MAIL_PASS,
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASS,
     },
   });
   // 4) Envoi du mail
