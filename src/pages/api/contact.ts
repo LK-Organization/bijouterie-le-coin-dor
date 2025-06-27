@@ -35,7 +35,7 @@ export const POST: APIRoute = async ({ request }) => {
   // 4) Envoi du mail
   try {
     await transporter.sendMail({
-      from: "contact@le-coin-dor.com",
+      from: `"${name}" <${email}>`,
       to: "contact@le-coin-dor.com",
       subject: "📬 Nouveau message depuis le formulaire",
       text: message,
