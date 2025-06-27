@@ -57,13 +57,14 @@ const schedule = [
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                     </svg>
                   </div>
-                  <div>
-                    <h3 class="font-semibold text-dark mb-2">{t.contact.address}</h3>
-                    <p class="text-text-light">
-                      شارع الشيخ عمي سعيد<br />
-                      غرداية، الجزائر
-                    </p>
-                  </div>
+                   <div>
+              <h3 class="font-semibold text-dark mb-2">{t.contactPreview.address}</h3>
+              <ul class="flex flex-col gap-2">
+                <li class="text-text-light whitespace-pre-line">{t.contactPreview.addressValue}</li>
+                <li class="text-text-light whitespace-pre-line">{t.contactPreview.address2Value}</li>
+              </ul>
+     
+            </div>
                 </div>
 
                 <!-- Phone -->
@@ -75,7 +76,7 @@ const schedule = [
                   </div>
                   <div>
                     <h3 class="font-semibold text-dark mb-2">{t.contact.phone}</h3>
-                    <p class="text-text-light">+213-XX-XX-XX-XX</p>
+                    <p class="text-text-light">0672 94 03 07</p>
                   </div>
                 </div>
 

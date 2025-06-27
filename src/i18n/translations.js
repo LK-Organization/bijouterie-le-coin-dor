@@ -46,6 +46,7 @@ export const translations = {
         "    Notre boutique vous accueille dans une ambiance chaleureuse au cœur de Ghardaïa. Nos conseillers se feront un plaisir de vous guider dans la découverte de nos collections et de vous accompagner dans le choix de pièces qui vous correspondent.",
       address: "Adresse",
       addressValue: "Rue Cheikh Ammi Said\nGhardaïa, Algérie",
+      address2Value: "FPHW+7CQ\nEl Atteuf, Algérie",
       hours: "Horaires d'ouverture",
       cta: "Nous contacter",
       days: {
@@ -223,6 +224,7 @@ export const translations = {
         "    يرحب بكم متجرنا في أجواء دافئة في قلب غرداية. سيسعد مستشارونا بإرشادكم في اكتشاف مجموعاتنا ومرافقتكم في اختيار القطع التي تناسبكم.",
       address: "العنوان",
       addressValue: "شارع الشيخ عمي سعيد\nغرداية، الجزائر",
+      address2Value: "FPHW+7CQ\nالعطف، الجزائر",
       hours: "ساعات العمل",
       cta: "اتصل بنا",
       days: {
