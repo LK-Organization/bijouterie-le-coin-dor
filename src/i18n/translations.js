@@ -11,7 +11,7 @@ export const translations = {
     hero: {
       title: "L'art de la joaillerie d'exception",
       subtitle:
-        "Des créations raffinées et intemporelles,\nfaçonnées avec passion\npour sublimer votre élégance naturelle.",
+        "Des créations raffinées et intemporelles,\nfaçonnées avec passion,\npour sublimer votre élégance naturelle.",
       cta: "Découvrir notre galerie",
       discover: "Découvrir",
     },
@@ -190,7 +190,7 @@ export const translations = {
     // Hero Section
     hero: {
       title: "فن صناعة المجوهرات الاستثنائية",
-      subtitle: "إبداعات راقية وخالدة، مصنوعة بشغف لتبرز أناقتك الطبيعية.",
+      subtitle: "إبداعات راقية وخالدة، مصنوعة بشغف، لتبرز أناقتك الطبيعية.",
       cta: "اكتشف معرضنا",
       discover: "اكتشف",
     },
